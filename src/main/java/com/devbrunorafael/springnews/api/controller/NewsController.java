@@ -4,34 +4,30 @@ import com.devbrunorafael.springnews.domain.model.News;
 import com.devbrunorafael.springnews.domain.service.NewsService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/News")
+@RestController
+@RequestMapping("/news")
 @AllArgsConstructor
 public class NewsController {
 
     private NewsService newsService;
 
-    @GetMapping("/{country}")
+    @GetMapping("/pais/{country}")
     @ResponseStatus(HttpStatus.OK)
     public List<News> findNewsByCountry(@PathVariable String country){
         return newsService.findNewsByCountry(country);
     }
 
-    @GetMapping("/{category}")
+    @GetMapping("/categoria/{category}")
     @ResponseStatus(HttpStatus.OK)
     public List<News> findNewsByCategory(@PathVariable String category){
         return newsService.findNewsByCategory(category);
     }
 
-    @GetMapping("/{sources}")
+    @GetMapping("/fonte/{sources}")
     @ResponseStatus(HttpStatus.OK)
     public List<News> findNewsBySources(@PathVariable String sources){
         return newsService.findNewsBySources(sources);
