@@ -1,6 +1,5 @@
 package com.devbrunorafael.springnews.domain.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +9,7 @@ import java.time.LocalDate;
 @Setter
 public class News {
 
+    private Source source;
     private String author;
     private String title;
     private String description;

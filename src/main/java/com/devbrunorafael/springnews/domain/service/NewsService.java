@@ -1,14 +1,15 @@
 package com.devbrunorafael.springnews.domain.service;
 
 import com.devbrunorafael.springnews.domain.model.News;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
 @Service
 public class NewsService {
+
 
     @Value("${news-api}")
     private String newsApi;
@@ -18,10 +19,8 @@ public class NewsService {
 
     private final String headlines = "top-headlines?";
 
-    public News findLatestNews(String username){
-        return new RestTemplate()
-                .getForEntity(newsApi, News.class).getBody();
-    }
+    @Autowired
+    private RestTemplateService restTemplateService;
 
     // aplicar filtro de pais com (country=br&)
 
@@ -32,7 +31,8 @@ public class NewsService {
                 .concat(country)
                 .concat(this.newsApiKey);
 
-        return null;
+        return restTemplateService.makeRequestNewsApi(requisitionLink)
+                .getArticles();
     }
 
     public List<News> findNewsByCategory(String category){
@@ -41,8 +41,10 @@ public class NewsService {
                 .concat("category=")
                 .concat(category)
                 .concat(this.newsApiKey);
+        System.out.println(requisitionLink);
 
-        return null;
+        return restTemplateService.makeRequestNewsApi(requisitionLink)
+                .getArticles();
     }
 
     public List<News> findNewsBySources(String sources){
@@ -52,6 +54,7 @@ public class NewsService {
                 .concat(sources)
                 .concat(this.newsApiKey);
 
-        return null;
+        return restTemplateService.makeRequestNewsApi(requisitionLink)
+                .getArticles();
     }
 }
