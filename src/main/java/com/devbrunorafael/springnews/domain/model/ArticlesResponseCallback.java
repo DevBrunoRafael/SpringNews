@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ResponseBodyNewsApi {
+public class ArticlesResponseCallback {
 
     private String status;
     private String totalResults;

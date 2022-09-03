@@ -31,7 +31,6 @@ public class NewsService {
                 .concat(topic)
                 .concat(this.newsApiKey);
 
-        System.out.println(requisitionLink);
         return restTemplateService.makeRequestNewsApi(requisitionLink)
                 .getArticles();
     }
@@ -53,7 +52,6 @@ public class NewsService {
                 .concat("category=")
                 .concat(category)
                 .concat(this.newsApiKey);
-        System.out.println(requisitionLink);
 
         return restTemplateService.makeRequestNewsApi(requisitionLink)
                 .getArticles();
