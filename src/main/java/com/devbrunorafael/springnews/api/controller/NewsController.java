@@ -18,6 +18,13 @@ public class NewsController {
 
     private NewsService newsService;
 
+    @GetMapping("/assunto/{topic}")
+    @ApiOperation("Search for news on a specific topic")
+    @ResponseStatus(HttpStatus.OK)
+    public List<News> findNewsBySpecificTopic(@PathVariable String topic){
+        return newsService.findNewsBySpecificTopic(topic);
+    }
+
     @GetMapping("/pais/{country}")
     @ApiOperation(value = "Search for the main news of the informed country")
     @ResponseStatus(HttpStatus.OK)

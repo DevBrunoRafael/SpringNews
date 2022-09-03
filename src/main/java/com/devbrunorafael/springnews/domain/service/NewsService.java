@@ -24,6 +24,19 @@ public class NewsService {
 
     // aplicar filtro de pais com (country=br&)
 
+    public List<News> findNewsBySpecificTopic(String topic) {
+        String requisitionLink = this.newsApi
+                .concat(this.headlines)
+                .concat("q=")
+                .concat(topic)
+                .concat(this.newsApiKey);
+
+        System.out.println(requisitionLink);
+        return restTemplateService.makeRequestNewsApi(requisitionLink)
+
+                .getArticles();
+    }
+
     public List<News> findNewsByCountry(String country){
         String requisitionLink = this.newsApi
                 .concat(this.headlines)
