@@ -22,7 +22,6 @@ public class NewsService {
     @Autowired
     private RestTemplateService restTemplateService;
 
-    // aplicar filtro de pais com (country=br&)
 
     public List<News> findNewsBySpecificTopic(String topic) {
         String requisitionLink = this.newsApi
