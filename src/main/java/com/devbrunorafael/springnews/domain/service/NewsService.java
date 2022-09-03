@@ -33,7 +33,6 @@ public class NewsService {
 
         System.out.println(requisitionLink);
         return restTemplateService.makeRequestNewsApi(requisitionLink)
-
                 .getArticles();
     }
 
@@ -65,6 +64,19 @@ public class NewsService {
                 .concat(this.headlines)
                 .concat("sources=")
                 .concat(sources)
+                .concat(this.newsApiKey);
+
+        return restTemplateService.makeRequestNewsApi(requisitionLink)
+                .getArticles();
+    }
+
+    public List<News> findNewsBySubjectAndCountry(String topic, String country) {
+        String requisitionLink = this.newsApi
+                .concat(this.headlines)
+                .concat("country=")
+                .concat(country)
+                .concat("&category=")
+                .concat(topic)
                 .concat(this.newsApiKey);
 
         return restTemplateService.makeRequestNewsApi(requisitionLink)

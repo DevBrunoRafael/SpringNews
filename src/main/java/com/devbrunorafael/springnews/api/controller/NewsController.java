@@ -45,4 +45,11 @@ public class NewsController {
     public List<News> findNewsBySources(@PathVariable String sources){
         return newsService.findNewsBySources(sources);
     }
+
+    @GetMapping("/{category}/{country}")
+    @ApiOperation("Search for news of a certain category in a specific country")
+    @ResponseStatus(HttpStatus.OK)
+    public List<News> findNewsBySubjectAndCountry(@PathVariable String category, @PathVariable String country){
+        return newsService.findNewsBySubjectAndCountry(category, country);
+    }
 }
